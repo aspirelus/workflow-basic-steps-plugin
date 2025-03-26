@@ -25,9 +25,12 @@ public class TimeoutStep extends Step implements Serializable {
 
     private boolean activity = false;
 
+    private int gracePeriod = 60;  // Default grace period in seconds
+
     @DataBoundConstructor
-    public TimeoutStep(int time) {
+    public TimeoutStep(int time, TimeUnit unit) {
         this.time = time;
+        this.unit = unit;
     }
 
     @DataBoundSetter
@@ -43,6 +46,15 @@ public class TimeoutStep extends Step implements Serializable {
         return unit;
     }
 
+    public int getGracePeriod() {
+        return gracePeriod;
+    }
+
+    @DataBoundSetter
+    public void setGracePeriod(int gracePeriod) {
+        this.gracePeriod = gracePeriod;
+    }
+    
     @DataBoundSetter
     public void setActivity(boolean activity) {
         this.activity = activity;
